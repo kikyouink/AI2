@@ -1,0 +1,33 @@
+<ion-header>
+
+    <ion-toolbar color="primary">
+        <ion-buttons slot="start">
+            <ion-menu-button>
+            </ion-menu-button>
+        </ion-buttons>
+
+        <ion-title>AI</ion-title>
+    </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+
+    <ion-card mode="ios" >
+        <img src="../../assets/bg/star.png" alt="">
+        <ion-card-header>
+            <ion-card-subtitle>请输入</ion-card-subtitle>
+            <ion-card-title>请输入啊啊啊</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <div class="text" contenteditable="true" text-center #text>你可以将一张红色牌当【杀】使用</div>
+        </ion-card-content>
+    </ion-card>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button class="send" color="twitter" (click)="prepareData()">
+            <span *ngIf="!loading">发送</span>
+            <ion-spinner *ngIf="loading" name="crescent"></ion-spinner>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

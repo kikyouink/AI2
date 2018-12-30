@@ -1,0 +1,21 @@
+<ion-app>
+    <ion-menu side="start" type="push">
+        <ion-content>
+            <div class="ion-bg">
+                <ion-avatar class="avatar slide">
+                    <img src="../assets/img/avatar/slide.png">
+                </ion-avatar>
+                <div class="sign" contenteditable="true">请设置你的签名~</div>
+            </div>
+            <ion-list>
+                <ion-list-header>
+                    菜单
+                </ion-list-header>
+                <ion-item *ngFor="let item of items" (click)="moveTo(item.link)" button="true" color="light">
+                    <ion-icon [name]="item.icon" slot="start"></ion-icon>{{item.name}}
+                </ion-item>
+            </ion-list>
+        </ion-content>
+    </ion-menu>
+    <ion-router-outlet main></ion-router-outlet>
+</ion-app>
