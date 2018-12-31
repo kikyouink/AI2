@@ -267,10 +267,10 @@
   dependencies:
     ionicons "4.5.1"
 
-"@ionic/pro@2.0.3":
-  version "2.0.3"
-  resolved "http://registry.npm.taobao.org/@ionic/pro/download/@ionic/pro-2.0.3.tgz#7db8c9d4bb7e72b01d0eaf06c5ffab027937573d"
-  integrity sha1-fbjJ1Lt+crAdDq8Gxf+rAnk3Vz0=
+"@ionic/pro@^2.0.4":
+  version "2.0.4"
+  resolved "http://registry.npm.taobao.org/@ionic/pro/download/@ionic/pro-2.0.4.tgz#d9531ddaaf11098b75dde5aad5fea47b23632322"
+  integrity sha1-2VMd2q8RCYt13eWq1f6keyNjIyI=
 
 "@ngtools/webpack@7.0.7":
   version "7.0.7"
@@ -312,6 +312,13 @@
     rxjs "6.3.3"
     semver "5.5.1"
     semver-intersect "1.4.0"
+
+"@types/cordova-plugin-file-transfer@^1.6.2":
+  version "1.6.2"
+  resolved "http://registry.npm.taobao.org/@types/cordova-plugin-file-transfer/download/@types/cordova-plugin-file-transfer-1.6.2.tgz#fd87d3f91781a1519dab8b87723d756eefdda998"
+  integrity sha1-/YfT+ReBoVGdq4uHcj11bu/dqZg=
+  dependencies:
+    cordova-plugin-file-transfer "*"
 
 "@types/cordova@latest":
   version "0.0.34"
@@ -885,7 +892,7 @@ base64-js@1.2.0:
   resolved "http://registry.npm.taobao.org/base64-js/download/base64-js-1.2.0.tgz#a39992d723584811982be5e290bb6a53d86700f1"
   integrity sha1-o5mS1yNYSBGYK+XikLtqU9hnAPE=
 
-base64-js@^1.0.2:
+base64-js@^1.0.2, base64-js@^1.2.3:
   version "1.3.0"
   resolved "http://registry.npm.taobao.org/base64-js/download/base64-js-1.3.0.tgz#cab1e6118f051095e58b5281aea8c1cd22bfc0e3"
   integrity sha1-yrHmEY8FEJXli1KBrqjBzSK/wOM=
@@ -1607,15 +1614,41 @@ cordova-plugin-device@2.0.2:
   resolved "http://registry.npm.taobao.org/cordova-plugin-device/download/cordova-plugin-device-2.0.2.tgz#fc08f3722e67eef7b6c67bfc99a83df6add0baba"
   integrity sha1-/Ajzci5n7ve2xnv8mag99q3Quro=
 
+cordova-plugin-file-transfer@*, cordova-plugin-file-transfer@1.7.1:
+  version "1.7.1"
+  resolved "http://registry.npm.taobao.org/cordova-plugin-file-transfer/download/cordova-plugin-file-transfer-1.7.1.tgz#a75d8be2ebc3bb9b23c5b1bbd199214ec267586b"
+  integrity sha1-p12L4uvDu5sjxbG70ZkhTsJnWGs=
+
+cordova-plugin-file@6.0.1:
+  version "6.0.1"
+  resolved "http://registry.npm.taobao.org/cordova-plugin-file/download/cordova-plugin-file-6.0.1.tgz#49606b8c15a5688d4728f92e4a7325a061de07f5"
+  integrity sha1-SWBrjBWlaI1HKPkuSnMloGHeB/U=
+
 cordova-plugin-ionic-keyboard@^2.0.5:
   version "2.1.3"
   resolved "http://registry.npm.taobao.org/cordova-plugin-ionic-keyboard/download/cordova-plugin-ionic-keyboard-2.1.3.tgz#6b050d5b7cb4393d5758b55f45a46372f25178fe"
   integrity sha1-awUNW3y0OT1XWLVfRaRjcvJReP4=
 
-cordova-plugin-ionic-webview@^2.0.0:
+cordova-plugin-ionic-webview@^2.3.1:
   version "2.3.1"
   resolved "http://registry.npm.taobao.org/cordova-plugin-ionic-webview/download/cordova-plugin-ionic-webview-2.3.1.tgz#13106cef1354b8aa8a4a6ef879f8759a2e707f49"
   integrity sha1-ExBs7xNUuKqKSm74efh1mi5wf0k=
+
+cordova-plugin-ionic@5.2.9:
+  version "5.2.9"
+  resolved "http://registry.npm.taobao.org/cordova-plugin-ionic/download/cordova-plugin-ionic-5.2.9.tgz#b4e2b9d8d9a8592e4495220af51883dd5e3f0d85"
+  integrity sha1-tOK52NmoWS5ElSIK9RiD3V4/DYU=
+  dependencies:
+    "@types/cordova-plugin-file-transfer" "^1.6.2"
+    mkpath ">=1.0.0"
+    node-version-compare ">=1.0.1"
+    plist ">=1.2.0"
+    xml2js ">=0.4"
+
+cordova-plugin-splashscreen@5.0.2:
+  version "5.0.2"
+  resolved "http://registry.npm.taobao.org/cordova-plugin-splashscreen/download/cordova-plugin-splashscreen-5.0.2.tgz#747e74f56e201cd585bc62d14bca19f6867ff1ed"
+  integrity sha1-dH509W4gHNWFvGLRS8oZ9oZ/8e0=
 
 cordova-plugin-statusbar@2.4.2:
   version "2.4.2"
@@ -3994,6 +4027,11 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0:
   dependencies:
     minimist "0.0.8"
 
+mkpath@>=1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/mkpath/download/mkpath-1.0.0.tgz#ebb3a977e7af1c683ae6fda12b545a6ba6c5853d"
+  integrity sha1-67Opd+evHGg65v2hK1Raa6bFhT0=
+
 move-concurrently@^1.0.1:
   version "1.0.1"
   resolved "http://registry.npm.taobao.org/move-concurrently/download/move-concurrently-1.0.1.tgz#be2c005fda32e0b29af1f05d7c4b33214c701f92"
@@ -4204,6 +4242,11 @@ node-sass@^4.11.0:
     sass-graph "^2.2.4"
     stdout-stream "^1.4.0"
     "true-case-path" "^1.0.2"
+
+node-version-compare@>=1.0.1:
+  version "1.0.1"
+  resolved "http://registry.npm.taobao.org/node-version-compare/download/node-version-compare-1.0.1.tgz#d85bfd20f0acade33577f56682c7109c34c550cd"
+  integrity sha1-2Fv9IPCsreM1d/VmgscQnDTFUM0=
 
 "nopt@2 || 3", nopt@3.x:
   version "3.0.6"
@@ -4736,6 +4779,15 @@ plist@2.1.0, plist@^2.1.0:
   dependencies:
     base64-js "1.2.0"
     xmlbuilder "8.2.2"
+    xmldom "0.1.x"
+
+plist@>=1.2.0:
+  version "3.0.1"
+  resolved "http://registry.npm.taobao.org/plist/download/plist-3.0.1.tgz#a9b931d17c304e8912ef0ba3bdd6182baf2e1f8c"
+  integrity sha1-qbkx0XwwTokS7wujvdYYK68uH4w=
+  dependencies:
+    base64-js "^1.2.3"
+    xmlbuilder "^9.0.7"
     xmldom "0.1.x"
 
 portfinder@1.0.17:
@@ -5337,7 +5389,7 @@ sax@0.5.x:
   resolved "http://registry.npm.taobao.org/sax/download/sax-0.5.8.tgz#d472db228eb331c2506b0e8c15524adb939d12c1"
   integrity sha1-1HLbIo6zMcJQaw6MFVJK25OdEsE=
 
-sax@^1.2.4:
+sax@>=0.6.0, sax@^1.2.4:
   version "1.2.4"
   resolved "http://registry.npm.taobao.org/sax/download/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha1-KBYjTiN4vdxOU1T6tcqold9xANk=
@@ -6629,10 +6681,23 @@ wrappy@1:
   resolved "http://registry.npm.taobao.org/wrappy/download/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"
   integrity sha1-tSQ9jz7BqjXxNkYFvA0QNuMKtp8=
 
+xml2js@>=0.4:
+  version "0.4.19"
+  resolved "http://registry.npm.taobao.org/xml2js/download/xml2js-0.4.19.tgz#686c20f213209e94abf0d1bcf1efaa291c7827a7"
+  integrity sha1-aGwg8hMgnpSr8NG88e+qKRx4J6c=
+  dependencies:
+    sax ">=0.6.0"
+    xmlbuilder "~9.0.1"
+
 xmlbuilder@8.2.2:
   version "8.2.2"
   resolved "http://registry.npm.taobao.org/xmlbuilder/download/xmlbuilder-8.2.2.tgz#69248673410b4ba42e1a6136551d2922335aa773"
   integrity sha1-aSSGc0ELS6QuGmE2VR0pIjNap3M=
+
+xmlbuilder@^9.0.7, xmlbuilder@~9.0.1:
+  version "9.0.7"
+  resolved "http://registry.npm.taobao.org/xmlbuilder/download/xmlbuilder-9.0.7.tgz#132ee63d2ec5565c557e20f4c22df9aca686b10d"
+  integrity sha1-Ey7mPS7FVlxVfiD0wi35rKaGsQ0=
 
 xmldom@0.1.x:
   version "0.1.27"
