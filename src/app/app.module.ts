@@ -3,6 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Clipboard } from "@ionic-native/clipboard/ngx";
 import { Toast } from '@ionic-native/toast/ngx';
@@ -22,6 +23,7 @@ import { PipesModule } from '../pipe/pipes.module';
         StatusBar,
         Clipboard,
         Toast,
+        SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],
     bootstrap: [AppComponent]

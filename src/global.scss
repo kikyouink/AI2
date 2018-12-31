@@ -8,13 +8,8 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
-html,
-body {
-    transform: translateZ(0px);
-    -webkit-overflow-scrolling: touch;
-}
 
-div{
+.sign,.text{
     outline: none;
 }
 

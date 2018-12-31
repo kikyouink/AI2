@@ -229,6 +229,13 @@
   dependencies:
     "@types/cordova" latest
 
+"@ionic-native/splash-screen@^5.0.0-beta.22":
+  version "5.0.0-beta.22"
+  resolved "http://registry.npm.taobao.org/@ionic-native/splash-screen/download/@ionic-native/splash-screen-5.0.0-beta.22.tgz#72bda8dd3b7539263abae3d9f0053505f376ae93"
+  integrity sha1-cr2o3Tt1OSY6uuPZ8AU1BfN2rpM=
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/status-bar@5.0.0-beta.21":
   version "5.0.0-beta.21"
   resolved "http://registry.npm.taobao.org/@ionic-native/status-bar/download/@ionic-native/status-bar-5.0.0-beta.21.tgz#496b1172fb43a919af2825f0167d27048e62f7fd"

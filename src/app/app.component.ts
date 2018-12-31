@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-
+import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { MenuController, Platform } from '@ionic/angular';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 import { Pro } from '@ionic/pro';
 import { RxjsService } from '../service/rxjs'
@@ -30,16 +29,17 @@ export class AppComponent {
     ];
     constructor(
         private platform: Platform,
-        private statusBar: StatusBar,
         private menuCtrl: MenuController,
         private router: Router,
         private rxjs: RxjsService,
+        private splash: SplashScreen,
     ) {
         this.initializeApp();
     }
 
     initializeApp() {
         this.platform.ready().then(() => {
+            this.splash.hide();
             this.sync();
         });
     }
@@ -48,7 +48,7 @@ export class AppComponent {
             const currentVersion = await Pro.deploy.getCurrentVersion();
             const resp = await Pro.deploy.sync({ updateMethod: 'background' });
             if (currentVersion.versionId !== resp.versionId) {
-                this.rxjs.show('获取到可用更新，下载中。。。','web');
+                this.rxjs.show('获取到可用更新，下载中。。。', 'web');
             } else {
                 console.log('无可用更新');
             }
