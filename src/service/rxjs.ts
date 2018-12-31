@@ -26,19 +26,22 @@ export class RxjsService {
     getMsg(): Observable<any> {
         return this.subject;
     }
-    async show(msg, type = 'm') {
+    show(msg, type = 'm') {
         if (type == 'm') {
             this.mtoast.show(msg, '3000', 'bottom').subscribe(toast => {
                 console.log(toast);
             });
         }
         else {
-            const toast = await this.toast.create({
-                message: msg,
-                position: 'top',
-                mode:'ios',
-            });
-            toast.present();
+            this.tp(msg);
         }
+    }
+    async tp(msg){
+        const toast = await this.toast.create({
+            message: msg,
+            position: 'top',
+            mode: 'ios',
+        });
+        toast.present();
     }
 }
