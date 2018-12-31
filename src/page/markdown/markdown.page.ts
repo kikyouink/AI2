@@ -1,4 +1,4 @@
-import { Component, OnInit, ChangeDetectorRef, ViewChild, ViewChildren, QueryList, ElementRef, ContentChildren } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { PainterService } from "../../service/painter";
 import { SentenceService } from "../../service/sentence";
@@ -6,7 +6,7 @@ import { Clipboard } from "@ionic-native/clipboard/ngx";
 import { RxjsService } from "../../service/rxjs";
 
 declare var editormd: any;
-declare var $ :any;
+declare var $: any;
 @Component({
     selector: 'app-markdown',
     templateUrl: './markdown.page.html',
@@ -15,8 +15,8 @@ declare var $ :any;
 export class MarkdownPage implements OnInit {
 
     structure: boolean = false;
-    abb: boolean = true;
-    hide: boolean = true;
+    bg: string = 'markdown';
+    color: string = "transparent";
     paragraph: Array<any>;
     params: any;
     title: string;
@@ -55,6 +55,8 @@ export class MarkdownPage implements OnInit {
             this.avatar = this.params.avatar;
             this.author = this.params.author;
             this.text = content.replace(/---/g, "```").replace(/\s{12}/g, "\n");
+            console.log(this.text);
+            
             setTimeout(() => {
                 this.markdown();
             }, 50)
@@ -75,9 +77,8 @@ export class MarkdownPage implements OnInit {
         }
     }
     scrollHandler(event: any) {
-        if (event.scrollTop > 120 && this.hide == true) this.hide = false;
-        else if (event.scrollTop <= 120 && this.hide == false) this.hide = true;
-        this.ref.detectChanges();
+        if (event.detail.scrollTop > 120 && this.color == "transparent") this.color = "primary";
+        else if (event.detail.scrollTop <= 120 && this.color == "primary") this.color = "transparent";
     }
     markdown() {
         editormd.markdownToHTML("editormd", {
@@ -88,7 +89,7 @@ export class MarkdownPage implements OnInit {
         });
     }
     copy() {
-        var code = this.params.code;
+        var code = this.params.source;
         this.clipboard.copy(code);
         this.rxjs.show('代码已复制');
     }

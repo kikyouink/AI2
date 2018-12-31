@@ -1,11 +1,14 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-	name: 'url',
+    name: 'url',
 })
 export class UrlPipe implements PipeTransform {
 
-	transform(value: string, ...args) {
-		return `../../assets/img/avatar/${value}.png`;
-	}
+    transform(value: string, type: string) {
+        if(type!='bg'){
+            return `/assets/img/${type}/${value}.png`;
+        }
+        else return `url('/assets/img/bg/${value}.png')`;
+    }
 }

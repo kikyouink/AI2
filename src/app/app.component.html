@@ -1,18 +1,13 @@
 <ion-app>
     <ion-menu side="start" type="push">
         <ion-content>
-            <div class="ion-bg">
-                <ion-avatar class="avatar slide">
-                    <img src="../assets/img/avatar/slide.png">
-                </ion-avatar>
-                <div class="sign" contenteditable="true">请设置你的签名~</div>
-            </div>
+            <my-user [blur]="blur" [bg]="bg" [avatar]="avatar" [name]="userName" sign="sign"></my-user>
             <ion-list>
                 <ion-list-header>
                     菜单
                 </ion-list-header>
                 <ion-item *ngFor="let item of items" (click)="moveTo(item.link)" button="true" color="light">
-                    <ion-icon [name]="item.icon" slot="start"></ion-icon>{{item.name}}
+                    <ion-icon [name]="item.icon" slot="start" color="iceblue"></ion-icon>{{item.name}}
                 </ion-item>
             </ion-list>
         </ion-content>

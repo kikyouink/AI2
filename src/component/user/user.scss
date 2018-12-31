@@ -1,0 +1,46 @@
+.bg {
+    height: 10rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 0;
+    &.blur {
+        &::before {
+            content: "";
+            position: absolute;
+            background: url(../../assets/img/bg/slide.png);
+            filter: blur(0.7rem);
+            z-index: -1;
+            width: 110%;
+            height: 110%;
+            top: -10px;
+            left: -10px;
+            background-size: cover;
+            overflow: hidden;
+        }
+    }
+    .flex {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 11rem;
+        height: 4rem;
+        bottom: calc(50% - 2rem);
+        .avatar {
+            box-shadow: 0 0 5px;
+        }
+        .name {
+            font-size: 1.5rem;
+            color: whitesmoke;
+        }
+    }
+    .sign {
+        color: whitesmoke;
+        text-shadow: 0 0 5px black;
+        bottom: 1rem;
+    }
+    .flex,
+    .sign {
+        position: absolute;
+        left: 1rem;
+    }
+}

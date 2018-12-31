@@ -1,31 +1,19 @@
-ion-header {
-    transition: 0.75s all;
-    background: none;
-    text-shadow: 0 0 5px black;
-    &::after {
-        height: 0 !important;
-    }
-    .toolbar-background {
-        background: initial !important;
-    }
-    &.opaque {
-        &::after {
-            height: 5px !important;
-        }
-        text-shadow: none;
-    }
+.header-md:after {
+    height: 0 !important;
 }
 
-ion-content{
-    position:absolute;
-    top:0;
+ion-content {
+    position: absolute;
+    top: 0;
 }
+
 .structure {
     height: fit-content;
     background: aliceblue;
     .mix {
         position: relative;
-        overflow: scroll hidden;
+        overflow-x: scroll;
+        overflow-y: hidden;
         height: 160px;
     }
     canvas {

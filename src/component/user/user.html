@@ -1,0 +1,9 @@
+<div class="bg" [class.blur]="blur" [style.background]="blur?(''):(bg|url:'bg')">
+    <div class="flex"  [style.bottom]="blur?(''):('0.8rem')">
+        <ion-avatar class="avatar">
+            <img [src]="avatar|url:'avatar'">
+        </ion-avatar>
+        <span class="name" *ngIf="name">{{name}}</span>
+    </div>
+    <div class="sign" contenteditable="true" *ngIf="sign">请设置你的签名~</div>
+</div>

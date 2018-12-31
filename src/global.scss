@@ -8,18 +8,24 @@
 @import '~@ionic/angular/css/text-alignment.css';
 @import '~@ionic/angular/css/text-transformation.css';
 @import '~@ionic/angular/css/flex-utils.css';
+html,
+body {
+    transform: translateZ(0px);
+    -webkit-overflow-scrolling: touch;
+}
+
+div{
+    outline: none;
+}
 
 ion-header {
     ion-toolbar {
-        --padding-top: 1.5rem;
+        --padding-top: 1.9rem;
     }
 }
 
 ion-card {
     color: #145c77 !important;
-    .card-header-md {
-        color: gray !important;
-    }
 }
 
 ion-badge {

@@ -1,19 +1,14 @@
 <ion-header>
-    <ion-toolbar color="primary">
+    <ion-toolbar [color]="color">
         <ion-buttons slot="start">
             <ion-back-button text=""></ion-back-button>
         </ion-buttons>
-        <ion-title>markdown</ion-title>
+        <ion-title>{{title}}</ion-title>
     </ion-toolbar>
 </ion-header>
 
-<ion-content (ionScroll)="scrollHandler($event)" scrollEvents="true">
-    <div class="pic">
-        <ion-avatar class="avatar markdown">
-            <img [src]="avatar|url">
-        </ion-avatar>
-        <div class="sign">{{author}}</div>
-    </div>
+<ion-content (ionScroll)="scrollHandler($event)" scroll-events="true">
+    <my-user [bg]="bg" [avatar]="avatar"></my-user>
     <div class="structure" *ngIf="structure">
         <div class="mix">
             <canvas></canvas>
@@ -31,8 +26,13 @@
         <textarea style="display: none" [(ngModel)]="text"></textarea>
     </div>
     <ion-fab vertical="bottom" horizontal="end" slot="fixed">
-        <ion-fab-button color="twitter" (click)="copy()">
-            复制
+        <ion-fab-button color="twitter">
+            更多
         </ion-fab-button>
+        <ion-fab-list side="top">
+            <ion-fab-button color="twitter" (click)="copy()">复制</ion-fab-button>
+            <ion-fab-button color="twitter">隐藏</ion-fab-button>
+            <!-- <ion-fab-button>Youtube</ion-fab-button> -->
+        </ion-fab-list>
     </ion-fab>
 </ion-content>

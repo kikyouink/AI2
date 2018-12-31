@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 
-import { MenuController,Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { MenuController, Platform } from '@ionic/angular';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
 
@@ -10,6 +9,11 @@ import { Router } from '@angular/router';
     templateUrl: 'app.component.html'
 })
 export class AppComponent {
+    bg: string = 'slide';
+    avatar: string = "test";
+    blur: boolean = true;
+    userName: string = "你的名字";
+    sign: boolean = true;
     items: Array<any> = [
         {
             icon: 'ios-code',
@@ -19,12 +23,11 @@ export class AppComponent {
         {
             icon: 'logo-github',
             name: 'Github',
-            link: 'https://github.com/q2578443177/AI',
+            link: 'https://github.com/q2578443177/AI2',
         },
     ];
     constructor(
         private platform: Platform,
-        private splashScreen: SplashScreen,
         private statusBar: StatusBar,
         private menuCtrl: MenuController,
         private router: Router,
@@ -34,8 +37,7 @@ export class AppComponent {
 
     initializeApp() {
         this.platform.ready().then(() => {
-            this.statusBar.backgroundColorByHexString('#ffffff00');
-            this.splashScreen.hide();
+            // this.statusBar.backgroundColorByHexString('#ffffff00');
         });
     }
     moveTo(link) {

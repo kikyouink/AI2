@@ -15,7 +15,7 @@
     <ion-list>
         <ion-item button="true" *ngFor="let book of bookList" (click)="moveTo('/markdown',book)">
             <ion-avatar slot="start">
-                <img [src]="book.avatar|url">
+                <img [src]="book.avatar|url:'avatar'">
             </ion-avatar>
             <ion-label>
                 <h3>Form@{{book.author}}</h3>

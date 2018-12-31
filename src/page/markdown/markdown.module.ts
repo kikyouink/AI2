@@ -4,9 +4,8 @@ import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
-
+import { ComponentsModule } from '../../component/components.module';
 import { MarkdownPage } from './markdown.page';
-import { PipesModule } from '../../pipe/pipes.module';
 
 const routes: Routes = [
     {
@@ -20,7 +19,7 @@ const routes: Routes = [
         CommonModule,
         FormsModule,
         IonicModule,
-        PipesModule,
+        ComponentsModule,
         RouterModule.forChild(routes)
     ],
     declarations: [MarkdownPage]
