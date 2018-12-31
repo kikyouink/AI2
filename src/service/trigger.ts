@@ -6,4 +6,7 @@ import { Injectable } from '@angular/core';
 export class TriggerService {
 
     constructor() { }
+    start(){
+        
+    }
 }

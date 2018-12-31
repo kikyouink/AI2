@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { SentenceService } from "../service/sentence";
 import { RxjsService } from "../service/rxjs";
+import { NavController,NavParams } from '@ionic/angular';
 @Injectable({
     providedIn: 'root'
 })
@@ -15,7 +16,7 @@ export class ViewAsService {
         viewAs: []
     };
     constructor(
-        public app: App,
+        public navCtrl: NavController,
         public sentence: SentenceService,
         public rxjs: RxjsService
     ) { }
@@ -127,14 +128,15 @@ export class ViewAsService {
         var code = this.sentence.getConversion(this.list);
         var restore = this.sentence.getRestore(this.sentence.json);
         code = "---javascript\n" + code + "\n---\n";
-        this.app.getRootNav().push("MarkdownPage", {
+        this.navCtrl.navigateForward(["/markdown", {
             type: 'code',
             title: "转换结果",
             author: "AI",
             avatar: "ai",
             content: code,
-            restore: restore
-        });
+            restore: JSON.stringify(restore)
+        }]);
+        
     }
     //视为技
     start() {

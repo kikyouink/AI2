@@ -93,3 +93,4 @@ export class PainterService {
         ctx.lineTo(bottom.x, bottom.y);
         ctx.stroke();
     }
+}

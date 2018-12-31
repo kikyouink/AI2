@@ -7,6 +7,32 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content padding>
-
+<ion-content (ionScroll)="scrollHandler($event)" scrollEvents="true">
+    <div class="pic">
+        <ion-avatar class="avatar markdown">
+            <img [src]="avatar|url">
+        </ion-avatar>
+        <div class="sign">{{author}}</div>
+    </div>
+    <div class="structure" *ngIf="structure">
+        <div class="mix">
+            <canvas></canvas>
+            <div class="btnBox">
+                <ion-button size="small" shape="round" *ngFor="let item of paragraph" (click)="jumpTo(item.head)"
+                    [color]="item.head==0?'danger':'twitter'" [attr.postag]="item.postag" [attr.head]="item.head"
+                    [attr.id]="item.id" [attr.deprel]="item.deprel">
+                    {{item.word}}
+                    <ion-badge color="danger">{{item.deprel}}</ion-badge>
+                </ion-button>
+            </div>
+        </div>
+    </div>
+    <div id="editormd">
+        <textarea style="display: none" [(ngModel)]="text"></textarea>
+    </div>
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+        <ion-fab-button color="twitter" (click)="copy()">
+            复制
+        </ion-fab-button>
+    </ion-fab>
 </ion-content>

@@ -1,0 +1,51 @@
+ion-header {
+    transition: 0.75s all;
+    background: none;
+    text-shadow: 0 0 5px black;
+    &::after {
+        height: 0 !important;
+    }
+    .toolbar-background {
+        background: initial !important;
+    }
+    &.opaque {
+        &::after {
+            height: 5px !important;
+        }
+        text-shadow: none;
+    }
+}
+
+ion-content{
+    position:absolute;
+    top:0;
+}
+.structure {
+    height: fit-content;
+    background: aliceblue;
+    .mix {
+        position: relative;
+        overflow: scroll hidden;
+        height: 160px;
+    }
+    canvas {
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .btnBox {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        width: fit-content;
+        height: 100%;
+        overflow: auto;
+    }
+}
+
+.pic {
+    background: url(../../assets/img/bg/markdown.png);
+    background-size: cover;
+    height: 13rem;
+    position: relative;
+}

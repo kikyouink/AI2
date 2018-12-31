@@ -28,6 +28,8 @@ export class AiPage implements OnInit {
         var msg = this.text.nativeElement.textContent;
         var replace = this.sentence.getReplace(msg);
         this.http.post(replace).subscribe(res => {
+            console.log(res);
+            
             return this.handleData(res);
         });
     }

@@ -303,6 +303,13 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
+"@ionic-native/clipboard@^5.0.0-beta.22":
+  version "5.0.0-beta.22"
+  resolved "http://registry.npm.taobao.org/@ionic-native/clipboard/download/@ionic-native/clipboard-5.0.0-beta.22.tgz#d7a787b3597b6605e695c324edfd792d9256bff2"
+  integrity sha1-16eHs1l7ZgXmlcMk7f15LZJWv/I=
+  dependencies:
+    "@types/cordova" latest
+
 "@ionic-native/core@5.0.0-beta.21":
   version "5.0.0-beta.21"
   resolved "http://registry.npm.taobao.org/@ionic-native/core/download/@ionic-native/core-5.0.0-beta.21.tgz#45f8a3cc0803ae321566f320e42381697ab4271c"
@@ -321,6 +328,13 @@
   version "5.0.0-beta.21"
   resolved "http://registry.npm.taobao.org/@ionic-native/status-bar/download/@ionic-native/status-bar-5.0.0-beta.21.tgz#496b1172fb43a919af2825f0167d27048e62f7fd"
   integrity sha1-SWsRcvtDqRmvKCXwFn0nBI5i9/0=
+  dependencies:
+    "@types/cordova" latest
+
+"@ionic-native/toast@^5.0.0-beta.22":
+  version "5.0.0-beta.22"
+  resolved "http://registry.npm.taobao.org/@ionic-native/toast/download/@ionic-native/toast-5.0.0-beta.22.tgz#3c3992f3222b0ebef760b998a968f90b74dac22b"
+  integrity sha1-PDmS8yIrDr73YLmYqWj5C3Tawis=
   dependencies:
     "@types/cordova" latest
 
@@ -1806,6 +1820,16 @@ copy-webpack-plugin@4.5.4:
     minimatch "^3.0.4"
     p-limit "^1.0.0"
     serialize-javascript "^1.4.0"
+
+cordova-clipboard@1.2.1:
+  version "1.2.1"
+  resolved "http://registry.npm.taobao.org/cordova-clipboard/download/cordova-clipboard-1.2.1.tgz#130624356583f749abed23b380724e1d273051c8"
+  integrity sha1-EwYkNWWD90mr7SOzgHJOHScwUcg=
+
+cordova-plugin-x-toast@2.7.2:
+  version "2.7.2"
+  resolved "http://registry.npm.taobao.org/cordova-plugin-x-toast/download/cordova-plugin-x-toast-2.7.2.tgz#2f8ca705bc2664832298b348cb17204cda79c17f"
+  integrity sha1-L4ynBbwmZIMimLNIyxcgTNp5wX8=
 
 core-js@^2.2.0, core-js@^2.4.0, core-js@^2.5.4:
   version "2.6.1"
@@ -3878,6 +3902,11 @@ jasminewd2@^2.1.0:
   version "2.2.0"
   resolved "http://registry.npm.taobao.org/jasminewd2/download/jasminewd2-2.2.0.tgz#e37cf0b17f199cce23bea71b2039395246b4ec4e"
   integrity sha1-43zwsX8ZnM4jvqcbIDk5Uka07E4=
+
+jquery@^3.3.1:
+  version "3.3.1"
+  resolved "http://registry.npm.taobao.org/jquery/download/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
+  integrity sha1-lYzinoHJeQ8xvneS311NlfxX+8o=
 
 js-base64@^2.1.8:
   version "2.5.0"

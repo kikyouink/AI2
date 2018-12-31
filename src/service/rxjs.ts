@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, pipe } from 'rxjs';
+import { Observable, Subject} from 'rxjs';
+import { Toast } from '@ionic-native/toast/ngx';
 
 @Injectable({
     providedIn: 'root'
@@ -8,6 +9,8 @@ export class RxjsService {
 
     subject: any;
     constructor(
+        private mtoast: Toast,
+
     ) {
         this.subject = new Subject<any>();
     }
@@ -15,16 +18,17 @@ export class RxjsService {
     sendMsg(msg, type?, callback?) {
         this.subject.next({
             msg: msg,
-            type: type,
             callback: callback,
         });
     }
-
-    clearMsg() {
-        this.subject.next();
-    }
-
     getMsg(): Observable<any> {
-        return this.subject.asObservable();
+        return this.subject;
+    }
+    show(msg){
+        console.log(msg);
+        this.mtoast.show(msg, '3000', 'bottom').subscribe(toast => {
+                console.log(toast);
+            }
+        );
     }
 }
