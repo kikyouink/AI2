@@ -55,8 +55,6 @@ export class MarkdownPage implements OnInit {
             this.avatar = this.params.avatar;
             this.author = this.params.author;
             this.text = content.replace(/---/g, "```").replace(/\s{12}/g, "\n");
-            console.log(this.text);
-            
             setTimeout(() => {
                 this.markdown();
             }, 50)

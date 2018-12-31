@@ -46,9 +46,9 @@ export class AppComponent {
     async sync() {
         try {
             const currentVersion = await Pro.deploy.getCurrentVersion();
-            const resp = await Pro.deploy.sync({ updateMethod: 'auto' });
+            const resp = await Pro.deploy.sync({ updateMethod: 'background' });
             if (currentVersion.versionId !== resp.versionId) {
-                this.rxjs.show('一项更新已经安装完毕', 'web');
+                this.rxjs.show('一项更新已经安装完毕,将在下次启动时可用', 'web');
             } else {
                 console.log('无可用更新');
             }
