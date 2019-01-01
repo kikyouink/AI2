@@ -2,13 +2,14 @@
     height: 10rem;
     position: relative;
     overflow: hidden;
+    background-size: cover;
     z-index: 0;
     &.blur {
         &::before {
             content: "";
             position: absolute;
             background: url(../../assets/img/bg/star.png);
-            filter: blur(0.2rem);
+            // filter: blur(0.2rem);
             z-index: -1;
             width: 110%;
             height: 110%;

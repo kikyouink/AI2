@@ -1,4 +1,4 @@
-<div class="bg" [class.blur]="blur" [style.background]="blur?(''):(bg|url:'bg')">
+<div class="bg" [class.blur]="blur" [style.backgroundImage]="blur?(''):(bg|url:'bg')">
     <div class="flex"  [style.bottom]="blur?(''):('0.8rem')">
         <ion-avatar class="avatar">
             <img [src]="avatar|url:'avatar'">

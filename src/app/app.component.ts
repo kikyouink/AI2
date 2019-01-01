@@ -12,7 +12,7 @@ import { RxjsService } from '../service/rxjs'
     templateUrl: 'app.component.html'
 })
 export class AppComponent {
-    bg: string = 'star';
+    bg: string = 'ai';
     avatar: string = "ai";
     blur: boolean = true;
     userName: string = "嗨~主人";
