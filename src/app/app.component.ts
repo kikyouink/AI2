@@ -72,13 +72,14 @@ export class AppComponent {
         try {
             const currentVersion = await Pro.deploy.getCurrentVersion();
             const resp = await Pro.deploy.sync({ updateMethod: 'background' });
-            console.log(resp);
+            // console.log(resp);
             if (currentVersion.versionId !== resp.versionId) {
                 this.rxjs.show('一项更新已经安装完毕,将在下次启动时可用', 'web');
             } else {
                 console.log('无可用更新');
             }
         } catch (err) {
+            console.log(err);
             Pro.monitoring.exception(err);
         }
     }
