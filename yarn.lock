@@ -1640,12 +1640,12 @@ cordova-plugin-device@2.0.2:
   resolved "http://registry.npm.taobao.org/cordova-plugin-device/download/cordova-plugin-device-2.0.2.tgz#fc08f3722e67eef7b6c67bfc99a83df6add0baba"
   integrity sha1-/Ajzci5n7ve2xnv8mag99q3Quro=
 
-cordova-plugin-file-transfer@*, cordova-plugin-file-transfer@1.7.1:
+cordova-plugin-file-transfer@*, cordova-plugin-file-transfer@^1.7.1:
   version "1.7.1"
   resolved "http://registry.npm.taobao.org/cordova-plugin-file-transfer/download/cordova-plugin-file-transfer-1.7.1.tgz#a75d8be2ebc3bb9b23c5b1bbd199214ec267586b"
   integrity sha1-p12L4uvDu5sjxbG70ZkhTsJnWGs=
 
-cordova-plugin-file@6.0.1:
+cordova-plugin-file@^6.0.1:
   version "6.0.1"
   resolved "http://registry.npm.taobao.org/cordova-plugin-file/download/cordova-plugin-file-6.0.1.tgz#49606b8c15a5688d4728f92e4a7325a061de07f5"
   integrity sha1-SWBrjBWlaI1HKPkuSnMloGHeB/U=
@@ -1660,7 +1660,7 @@ cordova-plugin-ionic-webview@^2.3.1:
   resolved "http://registry.npm.taobao.org/cordova-plugin-ionic-webview/download/cordova-plugin-ionic-webview-2.3.1.tgz#13106cef1354b8aa8a4a6ef879f8759a2e707f49"
   integrity sha1-ExBs7xNUuKqKSm74efh1mi5wf0k=
 
-cordova-plugin-ionic@5.2.9:
+cordova-plugin-ionic@^5.2.9:
   version "5.2.9"
   resolved "http://registry.npm.taobao.org/cordova-plugin-ionic/download/cordova-plugin-ionic-5.2.9.tgz#b4e2b9d8d9a8592e4495220af51883dd5e3f0d85"
   integrity sha1-tOK52NmoWS5ElSIK9RiD3V4/DYU=
