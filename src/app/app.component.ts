@@ -76,7 +76,7 @@ export class AppComponent {
             if (currentVersion.versionId !== resp.versionId) {
                 this.rxjs.show('一项更新已经安装完毕,将在下次启动时可用', 'web');
             } else {
-                console.log('无可用更新');
+                console.log('无可用更新 ');
             }
         } catch (err) {
             console.log(err);
