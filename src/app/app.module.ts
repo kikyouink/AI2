@@ -4,6 +4,8 @@ import { RouteReuseStrategy } from '@angular/router';
 
 import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
+import { AppMinimize } from '@ionic-native/app-minimize/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Clipboard } from "@ionic-native/clipboard/ngx";
 import { Toast } from '@ionic-native/toast/ngx';
@@ -23,6 +25,8 @@ import { PipesModule } from '../pipe/pipes.module';
         StatusBar,
         Clipboard,
         Toast,
+        Keyboard,
+        AppMinimize,
         SplashScreen,
         { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
     ],

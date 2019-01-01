@@ -1,10 +1,9 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+
 import { PainterService } from "../../service/painter";
 import { SentenceService } from "../../service/sentence";
 import { Clipboard } from "@ionic-native/clipboard/ngx";
 import { RxjsService } from "../../service/rxjs";
-
 declare var editormd: any;
 declare var $: any;
 @Component({
@@ -28,16 +27,15 @@ export class MarkdownPage implements OnInit {
     btnBox: HTMLDivElement;
     buttons: any;
     constructor(
-        public route: ActivatedRoute,
-        public ref: ChangeDetectorRef,
-        public sentence: SentenceService,
-        public painter: PainterService,
-        public rxjs: RxjsService,
+        private ref: ChangeDetectorRef,
+        private sentence: SentenceService,
+        private painter: PainterService,
+        private rxjs: RxjsService,
         private clipboard: Clipboard
     ) { }
 
     ngOnInit() {
-        this.route.params.subscribe(params => {
+        this.rxjs.getpage().subscribe(params=>{
             this.params = params;
             let content = this.params.content;
             let type = this.params.type;
@@ -59,8 +57,6 @@ export class MarkdownPage implements OnInit {
                 this.markdown();
             }, 50)
         });
-
-
     }
     ngAfterViewInit() {
         let type = this.params.type;

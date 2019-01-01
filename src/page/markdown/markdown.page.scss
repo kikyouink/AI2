@@ -2,16 +2,20 @@
     height: 0 !important;
 }
 
-ion-content {
+ion-header {
     position: absolute;
     top: 0;
+}
+
+ion-content {
+    transform: translateZ(0);
 }
 
 .structure {
     height: fit-content;
     background: aliceblue;
     .mix {
-        position: relative;
+        position: relative; 
         overflow-x: scroll;
         overflow-y: hidden;
         height: 160px;

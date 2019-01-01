@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { SentenceService } from "../service/sentence";
 import { RxjsService } from "../service/rxjs";
-import { Router } from '@angular/router';
 @Injectable({
     providedIn: 'root'
 })
@@ -16,7 +15,6 @@ export class ViewAsService {
         viewAs: []
     };
     constructor(
-        public router: Router,
         public sentence: SentenceService,
         public rxjs: RxjsService
     ) { }
@@ -128,7 +126,7 @@ export class ViewAsService {
         var code = this.sentence.getConversion(this.list);
         var restore = this.sentence.getRestore(this.sentence.json);
         var content = "---javascript\n" + code + "\n---\n";
-        this.router.navigate(["/markdown", {
+        this.rxjs.sendPage('/markdown', {
             type: 'code',
             title: "转换结果",
             author: "AI",
@@ -136,7 +134,7 @@ export class ViewAsService {
             content: content,
             source: code,
             restore: JSON.stringify(restore)
-        }],{skipLocationChange:true});
+        });
 
     }
     //视为技

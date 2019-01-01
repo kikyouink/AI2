@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { MenuController, Platform } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { AppMinimize } from '@ionic-native/app-minimize/ngx';
+import { PlatformLocation } from '@angular/common';
 import { Pro } from '@ionic/pro';
+import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { RxjsService } from '../service/rxjs'
 
 @Component({
@@ -10,11 +12,13 @@ import { RxjsService } from '../service/rxjs'
     templateUrl: 'app.component.html'
 })
 export class AppComponent {
-    bg: string = 'slide';
-    avatar: string = "test";
+    bg: string = 'star';
+    avatar: string = "ai";
     blur: boolean = true;
-    userName: string = "你的名字";
+    userName: string = "嗨~主人";
     sign: boolean = true;
+    keyboardShow: boolean = false;
+    @ViewChild('menu') menu:MenuController
     items: Array<any> = [
         {
             icon: 'ios-code',
@@ -30,23 +34,45 @@ export class AppComponent {
     constructor(
         private platform: Platform,
         private menuCtrl: MenuController,
-        private router: Router,
         private rxjs: RxjsService,
         private splash: SplashScreen,
+        private location: PlatformLocation,
+        private appMinimize: AppMinimize,
+        private keyboard: Keyboard
     ) {
         this.initializeApp();
     }
 
     initializeApp() {
         this.platform.ready().then(() => {
-            this.splash.hide();
-            this.sync();
+            if (this.platform.is('cordova')) {
+                
+                this.splash.hide();
+                this.sync();
+                this.keyboard.onKeyboardShow().subscribe(() => {
+                    this.keyboardShow = true;
+                })
+                this.platform.backButton.subscribe(() => {
+                    console.log(this.location.pathname);
+                    this.menu.isOpen().then(data => {
+                        if(data==true) this.menu.close();
+                    })
+                    if (this.keyboardShow) {
+                        this.keyboard.hide();
+                        this.keyboardShow = false;
+                    }
+                    else if (this.location.pathname == "/tabs/AI" || this.location.pathname == "/tabs/Book" || this.location.pathname == "/tabs") {
+                        this.appMinimize.minimize();
+                    }
+                })
+            }
         });
     }
     async sync() {
         try {
             const currentVersion = await Pro.deploy.getCurrentVersion();
             const resp = await Pro.deploy.sync({ updateMethod: 'background' });
+            console.log(resp);
             if (currentVersion.versionId !== resp.versionId) {
                 this.rxjs.show('一项更新已经安装完毕,将在下次启动时可用', 'web');
             } else {
@@ -61,6 +87,6 @@ export class AppComponent {
         if (/\./.test(link)) {
             location.href = link;
         }
-        else this.router.navigateByUrl(link);
+        else this.rxjs.sendPage(link);
     }
 }

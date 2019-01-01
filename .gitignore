@@ -8,6 +8,7 @@
 *.tmp.*
 log.txt
 release.bat
+release.lnk
 *.sublime-project
 *.sublime-workspace
 .vscode/

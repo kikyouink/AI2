@@ -7,7 +7,7 @@
     </ion-toolbar>
 </ion-header>
 
-<ion-content (ionScroll)="scrollHandler($event)" scroll-events="true">
+<ion-content id="wrapper" (ionScroll)="scrollHandler($event)" scrollEvents="true">
     <my-user [bg]="bg" [avatar]="avatar"></my-user>
     <div class="structure" *ngIf="structure">
         <div class="mix">
@@ -32,7 +32,7 @@
         <ion-fab-list side="top">
             <ion-fab-button color="twitter" (click)="copy()">复制</ion-fab-button>
             <ion-fab-button color="twitter">隐藏</ion-fab-button>
-            <!-- <ion-fab-button>Youtube</ion-fab-button> -->
         </ion-fab-list>
     </ion-fab>
+
 </ion-content>
