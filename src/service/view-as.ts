@@ -41,7 +41,7 @@ export class ViewAsService {
     getFilterCard() {
         var main = "", filter = [];
         var card = this.sentence.getFilter("", "BA", "n");
-        var ATT = this.sentence.getATT(card);
+        var ATT = this.sentence.getATT(card,"n/a");
         if (ATT)
             ATT.map(i => {
                 var type = this.sentence.getType(i.word);
