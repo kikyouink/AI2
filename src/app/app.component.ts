@@ -7,6 +7,7 @@ import { Pro } from '@ionic/pro';
 import { Keyboard } from '@ionic-native/keyboard/ngx';
 import { RxjsService } from '../service/rxjs'
 
+declare var VConsole:any;
 @Component({
     selector: 'app-root',
     templateUrl: 'app.component.html'
@@ -46,7 +47,7 @@ export class AppComponent {
     initializeApp() {
         this.platform.ready().then(() => {
             if (this.platform.is('cordova')) {
-                
+                new VConsole();
                 this.splash.hide();
                 this.sync();
                 this.keyboard.onKeyboardShow().subscribe(() => {

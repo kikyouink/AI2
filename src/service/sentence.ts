@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { RxjsService } from "../service/rxjs";
+import { log } from 'util';
 
 @Injectable({
     providedIn: 'root'
@@ -81,8 +83,13 @@ export class SentenceService {
         '手': 'h',
     }
     constructor(
-        // public rxjs: RxjsProvider,
-    ) { }
+        public rxjs: RxjsService,
+    ) {
+        window.onerror = (message, url, line, column, error) => {
+            console.log('[错误]:', message, url, line, column, error);
+            this.rxjs.show(message);
+        }
+    }
     getType(word) {
         if (!word) return null;
         var w;
@@ -108,7 +115,6 @@ export class SentenceService {
                 }
             }
         }
-
         console.error(`没有找到【${word}】的翻译...`);
         return word;
     }
@@ -135,7 +141,10 @@ export class SentenceService {
                 } else if (typeof obj[i] == "number") {
                     str += `${obj[i]},`;
                 }
-                else str += `"${obj[i]}",`;
+                else {
+                    debugger;
+                    str += `"${obj[i]}",`;
+                }
             }
         }
         track(obj);
@@ -154,10 +163,12 @@ export class SentenceService {
             }
             return s;
         }
-        str = str.replace(/\{/g, '{\n').replace(/\,}/g, ',\n}')
-            .replace(/,\b/g, ',\n').replace(/;/g, ';\n')
+        str = str.replace(/\{/g, '{\n')//左花括号
+            .replace(/\,}/g, ',\n}')//右花括号
+            .replace(/,(\b|$)/g, ',\n')//逗号到单词边界或者句子结尾
+            .replace(/;/g, ';\n')//分号
             .replace(/\([^\)]+,[^\)]+\)/g, function (word) {
-                return word.replace(/,\n/g, ',');
+                return word.replace(/,\n/g, ',');//这个我自己都没看懂，鬼知道当时怎么写出来的
             })
         var arr = str.match(/(.+\n){1}/g);
         var n = '';
@@ -195,10 +206,8 @@ export class SentenceService {
                 i.word = i.word.replace(new RegExp(j.after, 'g'), j.before);
             })
         })
+        this.json = arr;
         return arr;
-    }
-    receiveJson(json) {
-        this.json = json;
     }
 
     // --------------------------------------------句子成分------------------------------------------------

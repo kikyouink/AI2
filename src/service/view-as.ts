@@ -6,7 +6,7 @@ import { RxjsService } from "../service/rxjs";
 })
 export class ViewAsService {
 
-    list: any = {};
+    skill: any = {};
     promptList: any = {
         when: [],
         filterCard: [],
@@ -34,8 +34,7 @@ export class ViewAsService {
             when = arr;
             this.promptList.when.push(when1[0].word, when2[0].word);
         }
-        this.list.enable = when;
-        console.table(this.promptList.when);
+        this.skill.enable = when;
         return when;
     }
     getFilterCard() {
@@ -63,8 +62,7 @@ export class ViewAsService {
         }
         if (main != "") {
             var filterCard = new Function("card", "player", `return ${main}`);
-            this.list.filterCard = filterCard;
-            console.table(this.promptList.filterCard);
+            this.skill.filterCard = filterCard;
             return filterCard;
         }
     }
@@ -73,8 +71,7 @@ export class ViewAsService {
         this.promptList.selectCard.push(num[0].word);
         if (!num || this.sentence.getTranslation(num) < 2) return;
         var num2 = this.sentence.getTranslation(num);
-        this.list.selectCard = num2;
-        console.table(this.promptList.selectCard);
+        this.skill.selectCard = num2;
         return num2;
     }
     getPosition() {
@@ -90,8 +87,7 @@ export class ViewAsService {
                 }
             });
         if (!position) position = "he";
-        this.list.position = position;
-        console.table(this.promptList.position);
+        this.skill.position = position;
         return position;
     }
     getViewAs() {
@@ -102,7 +98,7 @@ export class ViewAsService {
         var v = {
             name: viewAs
         };
-        this.list.viewAs = v;
+        this.skill.viewAs = v;
         console.table(this.promptList.viewAs);
         return v;
     }
@@ -113,29 +109,14 @@ export class ViewAsService {
         var position = this.promptList.position.length ? this.promptList.position[0] : "";
         var viewAs = this.promptList.viewAs[0];
         var prompt = `将${selectCard}张${filterCard}${position}牌当做${viewAs}${when}`;
-        this.list.prompt = prompt;
+        this.skill.prompt = prompt;
         return prompt;
     }
     clear() {
-        this.list = {};
+        this.skill = {};
         for (var i in this.promptList) {
             this.promptList[i] = [];
         }
-    }
-    done() {
-        var code = this.sentence.getConversion(this.list);
-        var restore = this.sentence.getRestore(this.sentence.json);
-        var content = "---javascript\n" + code + "\n---\n";
-        this.rxjs.sendPage('/markdown', {
-            type: 'code',
-            title: "转换结果",
-            author: "AI",
-            avatar: "ai",
-            content: content,
-            source: code,
-            restore: JSON.stringify(restore)
-        });
-
     }
     //视为技
     start() {
@@ -147,6 +128,6 @@ export class ViewAsService {
         this.getPosition();
         this.getViewAs();
         this.getPrompt();
-        this.done();
+        return this.skill;
     }
 }

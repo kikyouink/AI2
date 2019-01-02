@@ -14,7 +14,7 @@
     <icon src="resources/icon.png" />
     <splash src="resources/splash.png" />
     <preference name="ScrollEnabled" value="false" />
-    <preference name="android-minSdkVersion" value="19" />
+    <preference name="android-minSdkVersion" value="18" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />
@@ -39,4 +39,5 @@
         <variable name="MIN_BACKGROUND_DURATION" value="30" />
     </plugin>
     <engine name="android" spec="7.1.4" />
+    <plugin name="cordova-sqlite-storage" spec="2.6.0" />
 </widget>

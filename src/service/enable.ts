@@ -13,12 +13,6 @@ export class EnableService {
     ) {
         console.log('Hello EnableService Service');
     }
-    start() {
-        console.log('开始编写主动技');
-        this.getAction();
-        this.getSource();
-        this.getFilterTarget();
-    }
     getAction() {
         var action;
         var HED = this.sentence.getHED();
@@ -90,5 +84,16 @@ export class EnableService {
     }
     getContent() {
 
+    }
+    done() {
+        // var code = this.sentence.getConversion(this.list);
+        
+    }
+    start() {
+        console.log('开始编写主动技');
+        this.getAction();
+        this.getSource();
+        this.getFilterTarget();
+        this.done();
     }
 }

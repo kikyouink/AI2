@@ -35,7 +35,7 @@ export class MarkdownPage implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.rxjs.getpage().subscribe(params=>{
+        this.rxjs.getpage().subscribe(params => {
             this.params = params;
             let content = this.params.content;
             let type = this.params.type;
@@ -52,7 +52,7 @@ export class MarkdownPage implements OnInit {
             this.title = this.params.title;
             this.avatar = this.params.avatar;
             this.author = this.params.author;
-            this.text = content.replace(/---/g, "```").replace(/\s{12}/g, "\n");
+            this.text = content.replace(/---/g, "```");
             setTimeout(() => {
                 this.markdown();
             }, 50)

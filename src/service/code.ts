@@ -21,23 +21,18 @@ export class CodeService {
 
     start(json) {
         console.log('coding...');
-        console.log(json);
-        this.sentence.receiveJson(json);
+        var skill;
         var type = this.judgeType(json);
-        console.log(this.sentence.json);
         switch (type) {
-            case "viewAs": this.viewAs.start(); break;
-            case "enable": this.enable.start(); break;
-            case "trigger": this.trigger.start(); break;
-            default: this.quit();
+            case "viewAs": skill = this.viewAs.start(); break;
+            case "enable": skill = this.enable.start(); break;
+            case "trigger": skill = this.trigger.start(); break;
+            default: skill = null; this.rxjs.show('无法判断类型', 'web');
         }
-    }
-    getPassages() {
-
+        this.done(skill);
     }
     judgeType(json) {
-        return this.judgeViewAs(json) ? "viewAs" : this.judgeEnable(json) ? "enable" : this.judgeTrigger(json) ? "trigger" : this.quit();
-
+        return this.judgeViewAs(json) ? "viewAs" : this.judgeEnable(json) ? "enable" : this.judgeTrigger(json) ? "trigger" : null;
     }
     judgeViewAs(json) {
         var BA = json.some((i) => {
@@ -55,8 +50,21 @@ export class CodeService {
     judgeTrigger(json) {
         return false;
     }
-    quit() {
-        this.rxjs.sendMsg('无法判断类型');
-        return;
+    done(skill) {
+        if (skill) {
+            var code = this.sentence.getConversion(skill);
+            var content = "---javascript\n" + code + "\n---\n";
+        }
+        else content = "";
+        var restore = this.sentence.getRestore(this.sentence.json);
+        this.rxjs.sendPage('/markdown', {
+            type: 'code',
+            title: "转换结果",
+            author: "AI",
+            avatar: "ai",
+            content: content,
+            source: code,
+            restore: JSON.stringify(restore)
+        });
     }
 }
