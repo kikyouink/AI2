@@ -2,7 +2,6 @@ import { Component, OnInit } from "@angular/core";
 import { HttpService } from "../../service/http";
 import { CodeService } from "../../service/code";
 import { SentenceService } from "../../service/sentence";
-import { Storage } from '@ionic/storage';
 
 declare var $: any;
 @Component({
@@ -16,14 +15,11 @@ export class AiPage implements OnInit {
     loading: boolean = false;
     constructor(
         private http: HttpService,
-        private storage: Storage,
         private code: CodeService,
         private sentence: SentenceService
     ) { }
     ngOnInit() {
-        this.storage.get('des').then((val) => {
-            this.des = val;
-        });
+        this.des=localStorage.getItem('des')||'你可以将一张红色牌当【杀】使用';
     }
     prepareData() {
         this.text = $('.text');
@@ -33,7 +29,7 @@ export class AiPage implements OnInit {
     }
     postData() {
         var msg = this.text.text();
-        this.storage.set('des', msg);
+        localStorage.setItem('des',msg);
         var replace = this.sentence.getReplace(msg);
         this.http.post(replace).subscribe(res => {
             console.log(res);

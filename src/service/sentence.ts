@@ -142,7 +142,6 @@ export class SentenceService {
                     str += `${obj[i]},`;
                 }
                 else {
-                    debugger;
                     str += `"${obj[i]}",`;
                 }
             }
