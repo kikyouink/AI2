@@ -16,7 +16,8 @@ export class MarkdownPage implements OnInit {
     structure: boolean = false;
     bg: string = 'markdown';
     color: string = "transparent";
-    paragraph: Array<any>;
+    decompose: Array<any> = [];
+    paragraph: Array<any> = [];
     params: any;
     title: string;
     author: string;
@@ -42,6 +43,7 @@ export class MarkdownPage implements OnInit {
             if (type) {
                 this.structure = true;
                 this.paragraph = JSON.parse(this.params.restore);
+                this.decompose = this.params.decompose;
                 var origin = '##';
                 this.paragraph.map((i) => {
                     origin += i.word;

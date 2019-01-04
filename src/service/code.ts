@@ -19,10 +19,10 @@ export class CodeService {
 
     ) { }
 
-    start(json) {
+    start(paragraph) {
         console.log('coding...');
         var skill;
-        var type = this.judgeType(json);
+        var type = this.judgeType(paragraph);
         switch (type) {
             case "viewAs": skill = this.viewAs.start(); break;
             case "enable": skill = this.enable.start(); break;
@@ -31,23 +31,23 @@ export class CodeService {
         }
         this.done(skill);
     }
-    judgeType(json) {
-        return this.judgeViewAs(json) ? "viewAs" : this.judgeEnable(json) ? "enable" : this.judgeTrigger(json) ? "trigger" : null;
+    judgeType(paragraph) {
+        return this.judgeViewAs(paragraph) ? "viewAs" : this.judgeEnable(paragraph) ? "enable" : this.judgeTrigger(paragraph) ? "trigger" : null;
     }
-    judgeViewAs(json) {
-        var BA = json.some((i) => {
+    judgeViewAs(paragraph) {
+        var BA = paragraph.some((i) => {
             return i.deprel == "BA"
         });
         var HED = this.sentence.getHED();
         if (BA && HED[0].postag == 'v') return true;
     }
-    judgeEnable(json) {
+    judgeEnable(paragraph) {
         var TMP = this.sentence.getFilter('', 'TMP', 'n');
         var when = this.sentence.getChildren(TMP, 'ATT', 'b');
         if (this.sentence.getTranslation(when) == 'phaseUse') return true;
         return false;
     }
-    judgeTrigger(json) {
+    judgeTrigger(paragraph) {
         return false;
     }
     done(skill) {
@@ -56,7 +56,8 @@ export class CodeService {
             var content = "---javascript\n" + code + "\n---\n";
         }
         else content = "";
-        var restore = this.sentence.getRestore(this.sentence.json);
+        var restore = this.sentence.getRestore(this.sentence.paragraph);
+        var decompose = this.sentence.decompose;
         this.rxjs.sendPage('/markdown', {
             type: 'code',
             title: "转换结果",
@@ -64,7 +65,8 @@ export class CodeService {
             avatar: "ai",
             content: content,
             source: code,
-            restore: JSON.stringify(restore)
+            restore: JSON.stringify(restore),
+            decompose: decompose
         });
     }
 }

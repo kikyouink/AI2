@@ -14,7 +14,7 @@
     <icon src="resources/icon.png" />
     <splash src="resources/splash.png" />
     <preference name="ScrollEnabled" value="false" />
-    <preference name="android-minSdkVersion" value="18" />
+    <preference name="android-minSdkVersion" value="19" />
     <preference name="BackupWebStorage" value="none" />
     <preference name="SplashMaintainAspectRatio" value="true" />
     <preference name="ShowSplashScreenSpinner" value="false" />

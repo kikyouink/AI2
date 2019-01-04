@@ -37,8 +37,9 @@ export class AiPage implements OnInit {
         });
     }
     handleData(res) {
-        var json = this.sentence.deepCopy(res["items"]);
-        var restore = this.sentence.getRestore(json);
+        var paragraph = this.sentence.getCopy(res["items"]);
+        var restore = this.sentence.getRestore(paragraph);
+        this.sentence.paragraph = restore;
         this.loading = false;
         this.code.start(restore);
     }

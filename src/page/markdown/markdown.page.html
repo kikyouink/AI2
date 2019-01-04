@@ -9,11 +9,11 @@
 
 <ion-content id="wrapper" (ionScroll)="scrollHandler($event)" scrollEvents="true">
     <my-user [bg]="bg" [avatar]="avatar"></my-user>
-    <div class="structure" *ngIf="structure">
+    <div class="structure"  *ngFor="let part of decompose">
         <div class="mix">
             <canvas></canvas>
             <div class="btnBox">
-                <ion-button size="small" shape="round" *ngFor="let item of paragraph" (click)="jumpTo(item.head)"
+                <ion-button size="small" shape="round" *ngFor="let item of part" (click)="jumpTo(item.head)"
                     [color]="item.head==0?'danger':'twitter'" [attr.postag]="item.postag" [attr.head]="item.head"
                     [attr.id]="item.id" [attr.deprel]="item.deprel">
                     {{item.word}}

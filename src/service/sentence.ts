@@ -7,13 +7,15 @@ import { log } from 'util';
 })
 export class SentenceService {
 
-    json: any;
-    restoreList = []
+    paragraph: Array<any> = [];
+    decompose: Array<any> = [];
+    restoreList: Array<any> = [];
     typeList: object = {
         suit: ['club', 'diamond', 'heart', 'spade'],
         color: ['red', 'black'],
         type: ['basic', 'equip', 'trick'],
         position: ['h', 'e', 'he', 'j'],
+        character: ['player', 'target'],
     }
     replaceList: Array<any> = [
         {
@@ -28,7 +30,10 @@ export class SentenceService {
         }, {
             reg: '准备|判定|出牌|弃牌|结束',
             replacement: '特定'
-        }
+        }, {
+            reg: '若',
+            replacement: '假如'
+        },
     ]
     translationList: object = {
         '一/一张/一名': 1,
@@ -45,12 +50,12 @@ export class SentenceService {
         '结束': 'phaseEnd',
         '你/你可以': 'player',
         '其他': 'other',
-        '角色': 'target',
+        '其/角色': 'target',
         '摸': 'draw',
         '弃置': 'discard',
         '获得': 'gain',
         '回复': 'recover',
-        '造成': 'damage',
+        '造成/受到': 'damage',
         '使用': 'chooseToUse',
         '打出': 'chooseToRespond',
         '和/与': '&&',
@@ -61,8 +66,6 @@ export class SentenceService {
         '方块/方片': 'diamond',
         '红桃': 'heart',
         '黑桃': 'spade',
-        '装备区': 'e',
-        '判定区': 'j',
         '基本': 'basic',
         '锦囊': 'trick',
         '装备': 'equip',
@@ -81,15 +84,18 @@ export class SentenceService {
         '无中生有': 'wuzhong',
         '闪电': 'shandian',
         '手': 'h',
+        '装备区': 'e',
+        '判定区': 'j',
+        '令/让': 'let',
+        '若/假如/如果': 'if',
+        '对': 'to',
     }
     constructor(
         public rxjs: RxjsService,
-    ) {
-        window.onerror = (message, url, line, column, error) => {
-            console.log('[错误]:', message, url, line, column, error);
-            this.rxjs.show(message);
-        }
-    }
+    ) { }
+
+    // --------------------------------------------句子操作------------------------------------------------
+
     getType(word) {
         if (!word) return null;
         var w;
@@ -115,7 +121,7 @@ export class SentenceService {
                 }
             }
         }
-        console.error(`没有找到【${word}】的翻译...`);
+        // console.error(`没有找到【${word}】的翻译...`);
         return word;
     }
     getConversion(obj) {
@@ -201,19 +207,45 @@ export class SentenceService {
     }
     getRestore(arr) {
         arr.map((i) => {
-            this.restoreList.map((j) => {
-                i.word = i.word.replace(new RegExp(j.after, 'g'), j.before);
-            })
+            if (i.constructor === Array) this.getRestore(i);
+            else {
+                this.restoreList.map((j) => {
+                    i.word = i.word.replace(new RegExp(j.after, 'g'), j.before);
+                })
+            }
         })
-        this.json = arr;
         return arr;
+    }
+    getCopy(source, bool = true) {
+        var sourceCopy;
+        if (bool) sourceCopy = [];
+        else sourceCopy = {};
+        for (var item in source) {
+            sourceCopy[item] = typeof source[item] === 'object' ? this.getCopy(source[item], false) : source[item];
+        }
+        return sourceCopy;
+    }
+    getDecompose() {
+        var match = ['to', 'let'];
+        this.paragraph.map((i) => {
+            var push = false;
+            if (i.word != ',' && i.word != '，') {
+                if (this.getTranslation(i.word) != 'let' && this.getTranslation(i.word) != 'to') push = true;
+            }
+            if (push) {
+                if (!this.decompose.length) this.decompose.push([]);
+                this.decompose[this.decompose.length - 1].push(i);
+            }
+            else this.decompose.push([]);
+        })
+        console.log(this.decompose);
     }
 
     // --------------------------------------------句子成分------------------------------------------------
 
     //判断类型
     getHED() {
-        var HED = this.json.filter((i) => {
+        var HED = this.paragraph.filter((i) => {
             return i.head == 0
         })
         return HED;
@@ -221,7 +253,7 @@ export class SentenceService {
     getParent(item) {
         if (!item) return null;
         if (item.constructor == Array) item = item[0];
-        var parent = this.json.filter((i) => {
+        var parent = this.paragraph.filter((i) => {
             return i.id == item.head;
         })
         return parent;
@@ -229,7 +261,7 @@ export class SentenceService {
     getChildren(item, deprel?, postag?) {
         if (!item) return null;
         if (item.constructor == Array) item = item[0];
-        var children = this.json.filter((i) => {
+        var children = this.paragraph.filter((i) => {
             if (i.head != item.id) return false;
             // var parent
             if (deprel && i.deprel.indexOf(deprel) == -1) return false;
@@ -257,11 +289,21 @@ export class SentenceService {
         })
         return sibling && sibling.length ? sibling : null;
     }
+    getATT(item, postag = 'n') {
+        if (!item) return null;
+        var arr = [];
+        var DE = this.getChildren(item, 'DE');
+        var SET = this.getChildren(DE, 'DE');
+        var children = this.getChildren(item, 'ATT', postag);
+        this.getTrack(children, arr);
+        if (SET) this.getTrack(SET, arr);
+        return arr.length ? arr : null;
+    }
     getTrack(p, array) {
         var parent = [];
         if (p == null) parent = [];
         else if (p.constructor === Object) parent.push(p);
-        else parent = this.deepCopy(p);
+        else parent = this.getCopy(p);
         parent.map((i) => {
             var children = this.getChildren(i, 'ATT', 'n');
             if (children) {
@@ -273,19 +315,9 @@ export class SentenceService {
             }
         })
     }
-    getATT(item, postag = 'n') {
-        if (!item) return null;
-        var arr = [];
-        var DE = this.getChildren(item, 'DE');
-        var SET = this.getChildren(DE, 'DE');
-        var children = this.getChildren(item, 'ATT', postag);
-        this.getTrack(children, arr);
-        if (SET) this.getTrack(SET, arr);
-        return arr.length ? arr : null;
-    }
     getFilter(array, deprel, postag = "") {
         if (array == null || array == undefined) return null;
-        if (array == '') array = this.json;
+        if (array == '') array = this.paragraph;
         var filter = array.filter((i) => {
             var bool = false;
             if (i.deprel.indexOf(deprel) == -1) return false;
@@ -302,14 +334,5 @@ export class SentenceService {
             return true;
         })
         return filter.length ? filter : null;
-    }
-    deepCopy(source, bool = true) {
-        var sourceCopy;
-        if (bool) sourceCopy = [];
-        else sourceCopy = {};
-        for (var item in source) {
-            sourceCopy[item] = typeof source[item] === 'object' ? this.deepCopy(source[item], false) : source[item];
-        }
-        return sourceCopy;
     }
 }

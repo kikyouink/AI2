@@ -6,12 +6,37 @@ import { RxjsService } from '../service/rxjs';
 })
 export class EnableService {
 
-    list = []
+    skill: any = {};
     constructor(
         public sentence: SentenceService,
         public rxjs: RxjsService,
-    ) {
-        console.log('Hello EnableService Service');
+    ) { }
+    decompose(){
+        //第一件事就是分离
+        this.sentence.getDecompose();
+    }
+    getWhen() {
+        this.skill.enable = "phaseUse";
+    }
+    getFilter() {
+        var bool = false, assume;
+        var fit = this.sentence.getFilter('', 'ADV', 'c');
+        console.log(fit);
+
+        if (fit) {
+            fit.map((i) => {
+                if (this.sentence.getTranslation(i) == 'if') {
+                    bool = true;
+                    assume = i;
+                    return;
+                }
+            })
+            console.log(assume);
+        }
+        else bool = false;
+        if (bool == false) return;
+
+
     }
     getAction() {
         var action;
@@ -36,64 +61,18 @@ export class EnableService {
         return source;
     }
     getFilterTarget() {
-        var target, filter = '';
-        var HED = this.sentence.getHED();
-        var DBL = this.sentence.getChildren(HED, 'DBL', 'n');
-        var ADV = this.sentence.getChildren(HED, 'ADV', 'p');
-        var VOB = this.sentence.getChildren(HED, 'VOB', 'n');
-        if (DBL) {
-            target = DBL;
-            var ATT = this.sentence.getATT(target, 'n/r/m');
-            if (ATT) ATT.map((i) => {
-                switch (i.postag) {
-                    case 'm': console.log(this.sentence.getTranslation(i)); break;
-                    case 'r': filter += `if(target==player) return false;\n`; break;
-                    default: console.log(i);
-                }
-            })
-            filter += `return true;\n`;
-        }
-        else if (ADV) {
-            target = this.sentence.getChildren(ADV, 'POB', 'n');
-            var ATT = this.sentence.getATT(target, 'n/r/m');
-            if (ATT) ATT.map((i) => {
-                switch (i.postag) {
-                    case 'm': console.log(this.sentence.getTranslation(i)); break;
-                    case 'r': filter += `if(target==player) return false;\n`; break;
-                    default: console.log(i);
-                }
-            })
-            filter += `return true;\n`
-        }
-        else if (VOB) {
-            var ATT = this.sentence.getATT(VOB, 'n/r/m');
-            if (ATT) ATT.map((i) => {
-                switch (i.postag) {
-                    case 'm': console.log(this.sentence.getTranslation(i)); break;
-                    case 'r': filter += `if(target==player) return false;\n`; break;
-                    case 'n': target = i; break;
-                    default: console.log(i);
 
-                }
-            })
-            filter += `return true;\n`
-        }
-        console.log('合理目标:');
-        console.log(filter);
-        console.log(target);
     }
     getContent() {
 
     }
-    done() {
-        // var code = this.sentence.getConversion(this.list);
-        
-    }
     start() {
         console.log('开始编写主动技');
-        this.getAction();
-        this.getSource();
-        this.getFilterTarget();
-        this.done();
+        this.decompose();
+        // this.getWhen();
+        // this.getFilter();
+        // this.getFilterTarget();
+        return null;
+        // return this.skill;
     }
 }
